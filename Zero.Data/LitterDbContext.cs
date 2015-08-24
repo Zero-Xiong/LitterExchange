@@ -13,15 +13,14 @@ namespace Zero.Data
     {
         public LitterDbContext() : base("DbConnect")
         {
-            
-            //Database.SetInitializer<LitterDbContext>(new LitterDbContext());
+            Database.SetInitializer<LitterDbContext>(null);
         }
 
         public DbSet<Category> Categorys { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 }
