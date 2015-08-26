@@ -77,5 +77,32 @@ namespace Zero.Resource {
                 return ResourceManager.GetString("CategoryName_NoEmpty", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The sequence for category is between 0 to 100.
+        /// </summary>
+        public static string CategorySequence_RangeWrong {
+            get {
+                return ResourceManager.GetString("CategorySequence_RangeWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length for item title is not allowed.
+        /// </summary>
+        public static string ItemTitle_LengthWrong {
+            get {
+                return ResourceManager.GetString("ItemTitle_LengthWrong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item title can not be blank.
+        /// </summary>
+        public static string ItemTitle_NoEmpty {
+            get {
+                return ResourceManager.GetString("ItemTitle_NoEmpty", resourceCulture);
+            }
+        }
     }
 }

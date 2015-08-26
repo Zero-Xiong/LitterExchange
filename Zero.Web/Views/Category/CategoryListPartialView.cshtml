@@ -1,0 +1,14 @@
+﻿
+@model Zero.Web.ViewModels.CategoryList
+
+@if (Model != null && Model.Categories != null && Model.Categories.Count > 0)
+{
+    <ul class="list-group">
+        @foreach (var cat in Model.Categories)
+        {
+            <li class="list-group-item @( !String.IsNullOrWhiteSpace(Model.ActivedCategoryId) && Model.ActivedCategoryId.ToLower() == cat.Id.ToString().ToLower() ? "active" : string.Empty )">
+                <a href="" class="list-group-item-text">@cat.Name</a>
+            </li>
+        }
+    </ul>
+}

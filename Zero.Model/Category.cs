@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Zero.Resource;
 
@@ -16,5 +17,11 @@ namespace Zero.Model
 
         [DisplayName("Validate")]
         public bool IsEnabled { get; set; }
+
+        [Range(0, 100, ErrorMessageResourceName = "CategorySequence_RangeWrong", ErrorMessageResourceType = typeof(Message))]
+        public int Sequence { get; set; }
+
+
+        public virtual ICollection<Item> Items { get; set; }
     }
 }

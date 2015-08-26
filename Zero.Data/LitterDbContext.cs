@@ -18,9 +18,19 @@ namespace Zero.Data
 
         public DbSet<Category> Categorys { get; set; }
 
+        public DbSet<Item> Items { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
+            //modelBuilder.Entity<Item>()
+            //    .HasRequired(c => c.Categories)
+            //    .Map(
+            //        t => t.MapLeftKey("ItemId")
+            //        .MapRightKey("CategoryId")
+            //        .ToTable("CategoryItem")
+            //    );
         }
     }
 }

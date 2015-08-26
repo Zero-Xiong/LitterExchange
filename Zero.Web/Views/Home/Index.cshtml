@@ -1,61 +1,14 @@
-﻿@{
+﻿@model  Zero.Web.ViewModels.HomeIndexViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row row-offcanvas row-offcanvas-left">
     <div class="col-xs-6 col-sm-3 sidebar-offcanvas">
-        <div class="list-group">
-             <a href="" class="list-group-item active">Overview</a> 
-             <a href="" class="list-group-item">Reports</a> 
-             <a href="" class="list-group-item">Analytics</a> 
-             <a href="" class="list-group-item">Export</a> 
-        </div>
-        <div class="list-group">
-             <a href="" class="list-group-item">Nav item</a> 
-             <a href="" class="list-group-item">Nav item again</a> 
-             <a href="" class="list-group-item">One more nav</a> 
-             <a href="" class="list-group-item">Another nav item</a> 
-             <a href="" class="list-group-item">More navigation</a> 
-        </div>
-        <div class="list-group">
-            <a href="" class="list-group-item">Nav item again</a>
-            <a href="" class="list-group-item">One more nav</a>
-            <a href="" class="list-group-item">Another nav item</a> 
-        </div>
+        @Html.Partial("~/Views/Category/CategoryListPartialView.cshtml", Model.Category)
     </div>
     <div class="col-xs-12 col-sm-9">
-        <div class="row">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="~/Images/noimage.jpg" alt="...">
-                    <div class="caption">
-                        <h3>Thumbnail label</h3>
-                        <p>...</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="~/Images/noimage.jpg" alt="...">
-                    <div class="caption">
-                        <h3>Thumbnail label</h3>
-                        <p>...</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                    <img src="~/Images/noimage.jpg" alt="...">
-                    <div class="caption">
-                        <h3>Thumbnail label</h3>
-                        <p>...</p>
-                        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        @Html.Partial("ItemListPartialView", Model.Items)
     </div>
 </div>

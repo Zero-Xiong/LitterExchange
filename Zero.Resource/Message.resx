@@ -123,4 +123,13 @@
   <data name="CategoryName_NoEmpty" xml:space="preserve">
     <value>Category name can not be blank</value>
   </data>
+  <data name="CategorySequence_RangeWrong" xml:space="preserve">
+    <value>The sequence for category is between 0 to 100</value>
+  </data>
+  <data name="ItemTitle_LengthWrong" xml:space="preserve">
+    <value>The length for item title is not allowed</value>
+  </data>
+  <data name="ItemTitle_NoEmpty" xml:space="preserve">
+    <value>Item title can not be blank</value>
+  </data>
 </root>
