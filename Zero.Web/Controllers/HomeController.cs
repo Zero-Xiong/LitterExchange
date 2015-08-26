@@ -29,12 +29,19 @@ namespace Zero.Web.Controllers
             IList<Item> itemList = null;
 
             if (!string.IsNullOrWhiteSpace(activedCategoryId))
-                itemList = _dbContext.Items
-                    //.Include(i => i.Categories.Where(c => c.Id.ToString() == activedCategoryId))
-                    .ToList();
+            {
+                var category = _dbContext.Categorys.Where(c => c.Id.ToString().ToLower() == activedCategoryId.ToLower()).SingleOrDefault();
+
+                if (category == null)
+                    itemList = new List<Item>();
+                else { 
+                    _dbContext.Entry(category).Collection(i => i.Items).Load();
+
+                    itemList = category.Items.ToList();
+                }
+            }
             else
-                itemList = _dbContext.Items
-                    .ToList();
+                itemList = _dbContext.Items.ToList();
 
             HomeIndexViewModel viewModel = new HomeIndexViewModel()
             {

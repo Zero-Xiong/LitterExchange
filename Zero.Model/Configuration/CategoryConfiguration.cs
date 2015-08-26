@@ -14,7 +14,7 @@ namespace Zero.Model.Configuration
             ToTable("Category");
             HasKey(c => c.Id);
 
-            HasOptional(c => c.Items).WithMany().Map(t => t.MapKey("CategoryId").ToTable("CategoryItem"));
+            HasMany(i => i.Items).WithOptional();
         }
     }
 }

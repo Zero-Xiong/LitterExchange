@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Model;
+using Zero.Model.Configuration;
 
 namespace Zero.Data
 {
@@ -24,13 +25,9 @@ namespace Zero.Data
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            //modelBuilder.Entity<Item>()
-            //    .HasRequired(c => c.Categories)
-            //    .Map(
-            //        t => t.MapLeftKey("ItemId")
-            //        .MapRightKey("CategoryId")
-            //        .ToTable("CategoryItem")
-            //    );
+            modelBuilder.Configurations.Add(new ItemConfiguration());
+
+            modelBuilder.Configurations.Add(new CategoryConfiguration());
         }
     }
 }
