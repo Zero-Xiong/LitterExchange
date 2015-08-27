@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zero.Model;
 
-namespace Zero.Web.ViewModels
+namespace Zero.Web.Core.ViewModels
 {
     public class CategoryList
     {

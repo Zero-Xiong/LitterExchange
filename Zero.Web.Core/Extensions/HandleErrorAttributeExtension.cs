@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Zero.Web.Helper
+namespace Zero.Web.Core.Extensions
 {
     public class HandleErrorAttributeExtension : HandleErrorAttribute
     {

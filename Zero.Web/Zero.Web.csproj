@@ -128,6 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -137,10 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\HandleErrorAttributeExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CategoryList.cs" />
-    <Compile Include="ViewModels\HomeIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -206,10 +204,6 @@
       <Project>{0a550851-34c5-4b4c-8e4b-1dea0e955a4e}</Project>
       <Name>Zero.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zero.Data\Zero.Data.csproj">
-      <Project>{37992e29-9cce-4c54-9572-9bf18d31bbf5}</Project>
-      <Name>Zero.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zero.Model\Zero.Model.csproj">
       <Project>{3a50bb7d-161c-4af8-be50-ecc79e06abd6}</Project>
       <Name>Zero.Model</Name>
@@ -217,6 +211,14 @@
     <ProjectReference Include="..\Zero.Resource\Zero.Resource.csproj">
       <Project>{9cd0a40d-5813-408f-9053-ec1c9b7b4796}</Project>
       <Name>Zero.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Service\Zero.Service.csproj">
+      <Project>{4e4227fd-000a-47e2-b69a-626047952b8c}</Project>
+      <Name>Zero.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zero.Web.Core\Zero.Web.Core.csproj">
+      <Project>{462d3269-0673-496c-9736-c70430eac821}</Project>
+      <Name>Zero.Web.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

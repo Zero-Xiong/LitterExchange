@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Model;
-using Zero.Model.Configuration;
 
 namespace Zero.Data
 {
@@ -25,9 +26,19 @@ namespace Zero.Data
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Configurations.Add(new ItemConfiguration());
+            //Load all mapping configuration by below coding
+            var typesToRegister = Assembly.GetAssembly(typeof(EntityBase<Guid, DateTime>)).GetTypes()
+                                            .Where(type => !String.IsNullOrEmpty(type.Namespace))
+                                            .Where(type => type.BaseType != null && type.BaseType.IsGenericType &&
+                                               type.BaseType.GetGenericTypeDefinition() == typeof(EntityTypeConfiguration<>));
 
-            modelBuilder.Configurations.Add(new CategoryConfiguration());
+            foreach (var type in typesToRegister)
+            {
+                dynamic configurationInstance = Activator.CreateInstance(type);
+                modelBuilder.Configurations.Add(configurationInstance);
+            }
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Zero.Resource;
 
 namespace Zero.Model
 {
-    public class Category : EntityBase
+    public class Category : EntityBase<Guid, DateTime>
     {
         [Required(AllowEmptyStrings =false, ErrorMessageResourceName = "CategoryName_NoEmpty", ErrorMessageResourceType = typeof(Message)) ]
         [DisplayName("Category Name")]

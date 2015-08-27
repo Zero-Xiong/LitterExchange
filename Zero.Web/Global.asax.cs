@@ -22,16 +22,23 @@ namespace Zero.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ////IoC
+            //AutofacConfig.ConfigureContainer();
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
+            log.Info("Application Error");
+
             Exception exception = Server.GetLastError();
             Server.ClearError();
             Response.Clear();
 
+            log.Exception(exception);
+            
             if (!IsAjaxRequest())
-                Response.Redirect("~/Views/Shared/Error.cshtml");
+                Response.Redirect("/Views/Shared/Error.cshtml");
             else
                 Response.Write("Server Error, could not continue.");
         }

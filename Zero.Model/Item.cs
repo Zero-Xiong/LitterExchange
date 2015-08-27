@@ -9,7 +9,7 @@ using Zero.Resource;
 
 namespace Zero.Model
 {
-    public class Item : EntityBase
+    public class Item : EntityBase<Guid, DateTime>
     {
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "ItemTitle_NoEmpty", ErrorMessageResourceType = typeof(Message))]
         [StringLength(50, ErrorMessageResourceName = "ItemTitle_LengthWrong", ErrorMessageResourceType = typeof(Message), MinimumLength = 1)]
