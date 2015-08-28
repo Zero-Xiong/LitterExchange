@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Data;
+using Zero.Data.Infrastructure;
+using Zero.Data.Repository;
 using Zero.Model;
 
 namespace Zero.Service
@@ -15,35 +17,40 @@ namespace Zero.Service
         IEnumerable<Category> GetCategoriesByDefaultSorting();
 
         Category GetCategory(string Id);
+
+        void Save();
     }
 
     public class CategoryService : ICategoryService
     {
-        private LitterDbContext context;
+        private readonly IUnitOfWork _UnitOfWork;
+        private readonly ICategoryRepository repository;
 
         public CategoryService()
         {
-            context = new LitterDbContext();
-        }
-
-        public CategoryService(LitterDbContext _context)
-        {
-            context = _context;
+            _UnitOfWork = new UnitOfWork();
+            repository = new CategoryRepository(_UnitOfWork);
         }
 
         public IEnumerable<Category> GetCategories()
         {
-            return context.Categorys.ToList();
+            return repository.GetAll();
         }
 
         public IEnumerable<Category> GetCategoriesByDefaultSorting()
         {
-            return context.Categorys.Where(c => c.IsEnabled).OrderBy(c => new { c.Sequence, c.Name });
+            return repository.GetCategoriesByDefaultSorting();
         }
 
         public Category GetCategory(string Id)
         {
-            return context.Categorys.Find(Id);
+            return repository.SingleOrDefault(Id);
         }
+
+        public void Save()
+        {
+            this._UnitOfWork.Commit();
+        }
+
     }
 }

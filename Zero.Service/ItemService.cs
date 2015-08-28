@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zero.Data;
+using Zero.Data.Infrastructure;
+using Zero.Data.Repository;
 using Zero.Model;
 
 namespace Zero.Service
@@ -19,42 +21,28 @@ namespace Zero.Service
 
     public class ItemService : IItemService
     {
-        private LitterDbContext context;
+        private readonly IUnitOfWork _UnitOfWork;
+        private readonly IItemRepository repository;
 
         public ItemService()
         {
-            context = new LitterDbContext();
-        }
-
-        public ItemService(LitterDbContext _context)
-        {
-            context = _context;
+            _UnitOfWork = new UnitOfWork();
+            repository = new ItemRepository(_UnitOfWork);
         }
 
         public IEnumerable<Item> GetItemsByPage(int currentPage, int noOfRecords, string sortBy, string filterBy)
         {
-            var items = (sortBy.ToLower() == "datecreated") ? context.Items.OrderByDescending(i => i.DateCreated) : context.Items.OrderBy(i => i.Title);
-
-            return items.Skip(noOfRecords * currentPage).Take(noOfRecords).ToList();
+            return repository.GetItemsByPage(currentPage, noOfRecords, sortBy, filterBy);
         }
 
         public IEnumerable<Item> GetItemsByCategoryPage(Category category, int currentPage, int noOfRecords, string sortBy, string filterBy)
         {
-            var items = context.Entry(category).Collection(i => i.Items).Query().Where(i => i.Title.Contains(filterBy) || i.Description.Contains(filterBy));
-
-            items = (sortBy.ToLower() == "datecreated") ? items.OrderByDescending(i => i.DateCreated) : items.OrderBy(i=>i.Title);
-
-            return items.Skip(noOfRecords * currentPage).Take(noOfRecords).ToList();
+            return repository.GetItemsByCategoryPage(category, currentPage, noOfRecords, sortBy, filterBy);
         }
 
         public IEnumerable<Item> GetItemsByCategoryPage(string categoryId, int currentPage, int noOfRecords, string sortBy, string filterBy)
         {
-            var category = context.Categorys.Find(categoryId);
-
-            if (category == null)
-                return null;
-
-            return this.GetItemsByCategoryPage(category, currentPage, noOfRecords, sortBy, filterBy);
+            return repository.GetItemsByCategoryPage(categoryId, currentPage, noOfRecords, sortBy, filterBy);
         }
     }
 }
